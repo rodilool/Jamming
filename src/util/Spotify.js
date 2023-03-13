@@ -31,15 +31,16 @@ const Spotify = {
         }).then(response => {
             return response.json();
         }).then(jsonResponse => {
-            if (!jsonResponse.track) {
-                return []
+            if (!jsonResponse.tracks) {
+                console.log(jsonResponse);
+                return[];
             }
-            return jsonResponse.tracks.items.map(track => ({
-                id: track.id,
-                name: track.name,
-                artist: track.artist[0].name,
-                album: track.album.name,
-                uri: track.uri
+            return jsonResponse.tracks.items.map(tracks => ({
+                id: tracks.id,
+                name: tracks.name,
+                artists: tracks.artists[1],
+                album: tracks.album.name,
+                uri: tracks.uri
            }))    
 
         })
